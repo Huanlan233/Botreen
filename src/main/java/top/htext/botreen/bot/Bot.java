@@ -85,6 +85,5 @@ public class Bot {
         USE_CONTINUE,
         ATTACK_ONCE,
         ATTACK_CONTINUE
-
     }
 }

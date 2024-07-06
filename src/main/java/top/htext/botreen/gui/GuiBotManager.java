@@ -1,5 +1,6 @@
 package top.htext.botreen.gui;
 
+import fi.dy.masa.malilib.gui.GuiBase;
 import fi.dy.masa.malilib.gui.GuiListBase;
 import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
@@ -41,6 +42,18 @@ public class GuiBotManager extends GuiListBase<Bot, WidgetBotEntry, WidgetBotEnt
         return this.height - 80;
     }
 
+    public static class TabManager {
+        private static SideBotTab sideBotTab = SideBotTab.LOCAL;
+
+        public static void setSideBotTab(SideBotTab tab) {
+            sideBotTab = tab;
+        }
+
+        public static SideBotTab getSideBotTab() {
+            return sideBotTab;
+        }
+    }
+
     public enum SideBotTab {
         LOCAL("botreen.gui.tab.local");
 //        REMOTE("botreen.gui.tab.remote");
@@ -54,24 +67,12 @@ public class GuiBotManager extends GuiListBase<Bot, WidgetBotEntry, WidgetBotEnt
         }
     }
 
-    public static class TabManager {
-        private static SideBotTab sideBotTab = SideBotTab.LOCAL;
-
-        public static void setSideBotTab(SideBotTab tab) {
-            sideBotTab = tab;
-        }
-
-        public static SideBotTab getSideBotTab() {
-            return sideBotTab;
-        }
-    }
-
     private record TopTabButtonListener(SideBotTab tab, GuiBotManager parent) implements IButtonActionListener {
         @Override
-        public void actionPerformedWithButton(ButtonBase buttonBase, int i) {
+        public void actionPerformedWithButton(ButtonBase button, int i) {
             TabManager.setSideBotTab(this.tab);
             this.parent.reCreateListWidget();
-            this.parent.getListWidget().resetScrollbarPosition();
+            if (this.parent.getListWidget() != null) this.parent.getListWidget().resetScrollbarPosition();
         }
     }
 
@@ -88,9 +89,42 @@ public class GuiBotManager extends GuiListBase<Bot, WidgetBotEntry, WidgetBotEnt
         }
     }
 
+    public enum ToolBar {
+        ADD("botreen.gui.tab.add"),
+        CONFIGURE("botreen.gui.tab.configure");
+
+        private final String translationKey;
+        ToolBar(String translationKey) {
+            this.translationKey = translationKey;
+        }
+        public String getDisplayName(){
+            return StringUtils.translate(this.translationKey);
+        }
+    }
+
+    private void createToolTab() {
+        ButtonGeneric buttonAdd = new ButtonGeneric(10, this.height - 30, -1, 20, ToolBar.ADD.getDisplayName());
+        ButtonGeneric buttonConfigure = new ButtonGeneric(this.width - 10, this.height - 30, -1, true, ToolBar.CONFIGURE.getDisplayName());
+
+        this.addButton(buttonAdd, new IButtonActionListener() {
+            @Override
+            public void actionPerformedWithButton(ButtonBase buttonBase, int i) {
+
+            }
+        });
+
+        this.addButton(buttonConfigure, new IButtonActionListener() {
+            @Override
+            public void actionPerformedWithButton(ButtonBase buttonBase, int i) {
+                GuiBase.openGui(new GuiGenericConfig(new GuiBotManager()));
+            }
+        });
+    }
+
     @Override
     public void initGui() {
         super.initGui();
         createTopTab();
+        createToolTab();
     }
 }

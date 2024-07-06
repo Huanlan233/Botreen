@@ -59,7 +59,7 @@ public class GuiGenericConfig extends GuiConfigsBase {
         public void actionPerformedWithButton(ButtonBase buttonBase, int i) {
             TabManager.setConfigGuiTab(this.tab);
             this.parent.reCreateListWidget();
-            this.parent.getListWidget().resetScrollbarPosition();
+            if (this.parent.getListWidget() != null) this.parent.getListWidget().resetScrollbarPosition();
         }
     }
 

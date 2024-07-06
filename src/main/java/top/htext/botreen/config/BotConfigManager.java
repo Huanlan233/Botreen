@@ -16,7 +16,7 @@ public class BotConfigManager {
 
     public BotConfigManager(MinecraftServer server) {
         this.server = server;
-        this.botFile = new File(server.getSavePath(WorldSavePath.ROOT).toAbsolutePath() + "bot.json");
+        this.botFile = new File(this.server.getSavePath(WorldSavePath.ROOT).toAbsolutePath() + "bot.json");
     }
 
     public JsonArray getBotConfig()  {

@@ -2,8 +2,6 @@ package top.htext.botreen.network;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -16,9 +14,6 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import top.htext.botreen.BotreenClient;
-import top.htext.botreen.BotreenReference;
-import top.htext.botreen.bot.Bot;
-import top.htext.botreen.bot.BotConfigCache;
 import top.htext.botreen.config.BotConfigManager;
 
 import static top.htext.botreen.BotreenReference.identifier;
