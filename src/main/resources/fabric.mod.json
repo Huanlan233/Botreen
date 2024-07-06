@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "botreen",
+	"version": "${version}",
+	"name": "Botreen",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/botreen/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"top.htext.botreen.Botreen"
+		],
+		"client": [
+			"top.htext.botreen.BotreenClient"
+		],
+		"modmenu": [
+			"top.htext.botreen.compat.ModMenu"
+		]
+	},
+	"mixins": [
+		"botreen.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.16.5",
+		"java": ">=8",
+		"fabric": "*",
+		"carpet": ">=1.4.44",
+		"malilib": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

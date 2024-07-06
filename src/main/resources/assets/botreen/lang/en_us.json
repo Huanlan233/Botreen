@@ -1,0 +1,15 @@
+{
+  "botreen.gui.title.configs": "Botreen Configs",
+  "botreen.gui.title.bot_manager": "Bot Manager",
+  "botreen.gui.tab.generic": "Generic",
+  "botreen.comment.openGuiConfigs": "Open the in-game botreen config GUI.",
+  "botreen.comment.openBotManager": "Open the in-game bot manager.",
+  "botreen.tip.nonplaying": "There's nothing",
+  "botreen.botbar.add_bot": "Add",
+  "botreen.botbar.description.add_bot": "Add one bot.",
+  "botreen.bot.online": "Online: %s",
+  "botreen.bot.configure": "Configure",
+  "botreen.bot.remove": "Remove",
+  "botreen.gui.tab.local": "Local",
+  "botreen.gui.tab.remote": "Remote"
+}
