@@ -10,7 +10,7 @@ import net.minecraft.client.MinecraftClient;
 import top.htext.botreen.config.BotreenConfigs;
 import top.htext.botreen.gui.GuiBotManager;
 import top.htext.botreen.gui.GuiGenericConfig;
-import top.htext.botreen.network.BotSyncProtocol;
+import top.htext.botreen.network.FormSyncProtocol;
 
 public class KeyCallbacks {
     public static void init(MinecraftClient client) {
@@ -29,7 +29,7 @@ public class KeyCallbacks {
                 GuiBase.openGui(new GuiGenericConfig());
                 return true;
             } else if (key == BotreenConfigs.Generic.OPEN_BOT_MANAGER.getKeybind()) {
-                ClientPlayNetworking.send(BotSyncProtocol.SYNC_BOTS, PacketByteBufs.empty());
+                ClientPlayNetworking.send(FormSyncProtocol.SYNC_FORM, PacketByteBufs.empty());
                 GuiBase.openGui(new GuiBotManager());
                 return true;
             }

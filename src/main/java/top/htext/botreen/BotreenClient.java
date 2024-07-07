@@ -4,14 +4,14 @@ import fi.dy.masa.malilib.event.InitializationHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import top.htext.botreen.bot.BotConfigCache;
-import top.htext.botreen.network.BotSyncProtocol;
+import top.htext.botreen.bot.BotFormCache;
+import top.htext.botreen.network.FormSyncProtocol;
 
 import static top.htext.botreen.BotreenReference.LOGGER;
 
 @Environment(EnvType.CLIENT)
 public class BotreenClient implements ClientModInitializer {
-    public static BotConfigCache CACHE = new BotConfigCache();
+    public static BotFormCache CACHE = new BotFormCache();
 
     @Override
     public void onInitializeClient() {
@@ -19,6 +19,6 @@ public class BotreenClient implements ClientModInitializer {
 
         InitializationHandler.getInstance().registerInitializationHandler(new BotreenInitHandler());
 
-        BotSyncProtocol.Client.init();
+        FormSyncProtocol.Client.init();
     }
 }

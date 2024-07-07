@@ -6,6 +6,7 @@
   "botreen.gui.tab.remote": "Remote",
   "botreen.gui.tab.add": "Add",
   "botreen.gui.tab.configure": "Configure",
+  "botreen.gui.textinput.title": "Input",
   "botreen.comment.openGuiConfigs": "Open the in-game botreen config GUI.",
   "botreen.comment.openBotManager": "Open the in-game bot manager.",
   "botreen.tip.nonplaying": "There's nothing",

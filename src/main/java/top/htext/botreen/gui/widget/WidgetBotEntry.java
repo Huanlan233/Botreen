@@ -1,15 +1,20 @@
 package top.htext.botreen.gui.widget;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.gui.button.ButtonOnOff;
 import fi.dy.masa.malilib.gui.button.IButtonActionListener;
 import fi.dy.masa.malilib.gui.widgets.WidgetListEntryBase;
 import fi.dy.masa.malilib.render.RenderUtils;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.network.PacketByteBuf;
 import top.htext.botreen.bot.Bot;
 import top.htext.botreen.bot.BotListManager;
+
+import static top.htext.botreen.network.FormSyncProtocol.DELETE_BOT;
+import static top.htext.botreen.network.FormSyncProtocol.SYNC_FORM;
 
 public class WidgetBotEntry extends WidgetListEntryBase<Bot> {
 
@@ -24,30 +29,35 @@ public class WidgetBotEntry extends WidgetListEntryBase<Bot> {
         y += 1;
         x += this.width - 2;
 
-        x -= createButtonGeneric(x, y, "botreen.bot.remove");
-        x -= createButtonGeneric(x, y, "botreen.bot.configure");
-        x -= createButtonOnOff(x, y, "botreen.bot.online");
+        x -= createButtonGeneric(x, y, "botreen.bot.remove", (button, i) -> {
+            PacketByteBuf buf = PacketByteBufs.create();
+            buf.writeInt(this.bot.getId());
+
+            ClientPlayNetworking.send(DELETE_BOT, buf);
+            ClientPlayNetworking.send(SYNC_FORM, PacketByteBufs.empty());
+        });
+
+        x -= createButtonGeneric(x, y, "botreen.bot.configure", (button, i) -> {
+
+        });
+
+        x -= createButtonOnOff(x, y, "botreen.bot.online", (button, i) -> {
+
+        });
     }
 
-    private int createButtonGeneric(int x, int y, String translationKey) {
+    private int createButtonGeneric(int x, int y, String translationKey, IButtonActionListener listener) {
         ButtonGeneric button = new ButtonGeneric(x, y, -1, true, translationKey);
-        this.addButton(button, new ButtonListener());
+        this.addButton(button, listener);
 
         return button.getWidth() + 2;
     }
 
-    private int createButtonOnOff(int x, int y, String translationKey) {
+    private int createButtonOnOff(int x, int y, String translationKey, IButtonActionListener listener) {
         ButtonOnOff button = new ButtonOnOff(x, y, -1, true, translationKey, false);
-        this.addButton(button, new ButtonListener());
+        this.addButton(button, listener);
 
         return button.getWidth() + 2;
-    }
-
-    private static class ButtonListener implements IButtonActionListener {
-        @Override
-        public void actionPerformedWithButton(ButtonBase buttonBase, int i) {
-
-        }
     }
 
     @Override

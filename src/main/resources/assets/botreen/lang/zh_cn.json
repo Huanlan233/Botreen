@@ -4,6 +4,7 @@
   "botreen.gui.tab.generic": "通用",
   "botreen.gui.tab.add": "添加",
   "botreen.gui.tab.configure": "配置菜单",
+  "botreen.gui.textinput.title": "输入",
   "botreen.comment.openGuiConfigs": "打开 Botreen 配置界面。",
   "botreen.comment.openBotManager": "打开假人管理器。",
   "botreen.tip.nonplaying": "无",

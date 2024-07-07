@@ -1,9 +1,8 @@
 package top.htext.botreen.bot;
 
 import com.google.gson.JsonArray;
-import com.google.gson.reflect.TypeToken;
 
-public class BotConfigCache {
+public class BotFormCache {
     private JsonArray list = new JsonArray();
 
 

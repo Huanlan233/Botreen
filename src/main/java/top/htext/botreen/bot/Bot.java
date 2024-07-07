@@ -13,6 +13,8 @@ public class Bot {
     private boolean isDetained;
     private Action defaultAction;
 
+    private final int id;
+
     public Bot(String name, String description, Vec3d pos, Vec2f rotation, Identifier dimensionId, Action defaultAction, boolean isDetained) {
         this.name = name;
         this.description = description;
@@ -21,6 +23,20 @@ public class Bot {
         this.dimensionId = dimensionId;
         this.defaultAction = defaultAction;
         this.isDetained = isDetained;
+
+        this.id = (name + pos + rotation + dimensionId).hashCode();
+    }
+
+    public Bot(String name, Vec3d pos, Vec2f rotation, Identifier dimensionId) {
+        this.name = name;
+        this.description = "";
+        this.pos = pos;
+        this.rotation = rotation;
+        this.dimensionId = dimensionId;
+        this.defaultAction = Action.NONE;
+        this.isDetained = false;
+
+        this.id = (name + pos + rotation + dimensionId).hashCode();
     }
 
     public void setName(String name) {
@@ -77,6 +93,10 @@ public class Bot {
 
     public boolean isDetained() {
         return this.isDetained;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public enum Action {
